@@ -1,0 +1,13 @@
+body {
+    margin: 2em;
+    text-align: center;
+}
+
+h1, h2 {
+    color: #a5eb34;
+}
+
+ul {
+    display: inline-block;
+    text-align: left;
+}
