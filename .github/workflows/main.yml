@@ -1,18 +1,16 @@
-name: CI -> Deploy to My website
-on:
-  push:
-    branches: [ master, Development ]
+name: Deploy via ftp
+on: push
 jobs:
-  build:
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      # Here is the deployment action
-      - name: Upload from public_html via FTP
-        uses: airvzxf/ftp-deployment-action@latest
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          user: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local_dir: "./mywebpage"
-          delete: "false"
+    - uses: actions/checkout@v2
+    - name: Upload ftp
+      uses: genietim/ftp-action@releases/v4
+      with:
+        host: ${{ secrets.FTP_SERVER }}
+        user: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        localDir: ""
+        remoteDir: "mywebpage"
